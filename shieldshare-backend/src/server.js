@@ -1,14 +1,10 @@
-const express = require("express");
+const app = require("./app.js");
+const dotenv = require("dotenv");
 
-const app = express();
+dotenv.config();
 
-// middleware to parse JSON
-app.use(express.json());
+const PORT = process.env.PORT;
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
-
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+app.listen(PORT, () => {
+  console.log(`🚀 ShieldShare server running on port ${PORT}`);
 });
