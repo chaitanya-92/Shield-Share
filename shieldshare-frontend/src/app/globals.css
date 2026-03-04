@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Variables for theming ────────────────────────────────────────────── */
+:root {
+  --background: 222 47% 98%;
+  --foreground: 222 47% 8%;
+  --surface: 220 20% 94%;
+  --surface-2: 220 20% 88%;
+  --border: 220 13% 88%;
+  --primary: 221 83% 53%;
+  --primary-foreground: 0 0% 100%;
+  --muted: 220 13% 60%;
+}
+
+.dark {
+  --background: 240 11% 3%;
+  --foreground: 0 0% 94%;
+  --surface: 240 8% 6%;
+  --surface-2: 240 6% 9%;
+  --border: 240 6% 11%;
+  --primary: 221 83% 53%;
+  --primary-foreground: 0 0% 100%;
+  --muted: 240 5% 40%;
+}
+
+
+/* ── Tailwind theme mapping ───────────────────────────────────────────────── */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-mono), monospace;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar       { width: 4px; }
+  ::-webkit-scrollbar-track { background: hsl(var(--background)); }
+  ::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 2px; }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.3);
+    color: hsl(var(--foreground));
+  }
+
+  input, textarea {
+    outline: none;
+  }
+}
+
+
+/* ── Reusable component classes ───────────────────────────────────────────── */
+@layer components {
+
+  .btn-primary {
+    @apply text-white font-mono text-xs font-semibold
+           tracking-widest uppercase px-6 py-3
+           transition-colors duration-150 cursor-pointer;
+    background-color: hsl(var(--primary));
+  }
+  .btn-primary:hover {
+    background-color: hsl(221 83% 44%);
+  }
+
+  .btn-ghost {
+    @apply bg-transparent border text-xs font-mono tracking-wider
+           px-6 py-3 transition-all duration-150 cursor-pointer;
+    border-color: hsl(var(--border));
+    color: hsl(var(--muted));
+  }
+  .btn-ghost:hover {
+    color: hsl(var(--foreground));
+    border-color: hsl(var(--foreground) / 0.3);
+  }
+
+  .input-base {
+    @apply w-full px-4 py-2.5 font-mono text-sm transition-colors duration-150;
+    background-color: hsl(var(--surface));
+    border: 1px solid hsl(var(--border));
+    color: hsl(var(--foreground));
+  }
+  .input-base::placeholder {
+    color: hsl(var(--muted));
+  }
+  .input-base:focus {
+    border-color: hsl(var(--primary) / 0.6);
+  }
+
+  .card {
+    @apply p-8;
+    background-color: hsl(var(--surface));
+    border: 1px solid hsl(var(--border));
+  }
+
+  .card-hover {
+    @apply p-8 transition-all duration-200;
+    background-color: hsl(var(--surface));
+    border: 1px solid hsl(var(--border));
+  }
+  .card-hover:hover {
+    background-color: hsl(var(--surface-2));
+  }
+
+  .section {
+    @apply py-24 px-6;
+    border-top: 1px solid hsl(var(--border));
+  }
+
+  .section-inner {
+    @apply max-w-6xl mx-auto;
+  }
+
+  .section-tag {
+    @apply font-mono text-[11px] tracking-[0.2em] uppercase mb-3;
+    color: hsl(var(--primary));
+  }
+
+  .section-title {
+    @apply font-display text-4xl font-bold tracking-tight leading-tight;
+    color: hsl(var(--foreground));
+  }
+
+  .nav-link {
+    @apply font-mono text-xs tracking-wider transition-colors duration-150;
+    color: hsl(var(--muted));
+  }
+  .nav-link:hover {
+    color: hsl(var(--foreground));
+  }
+
+  .icon-box {
+    @apply w-10 h-10 flex items-center justify-center mb-5;
+    background-color: hsl(var(--primary) / 0.1);
+    border: 1px solid hsl(var(--primary) / 0.25);
+    color: hsl(var(--primary));
+  }
+
+}
+
+
+/* ── Noise texture overlay ────────────────────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.35;
+}
