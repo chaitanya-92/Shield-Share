@@ -9,5 +9,5 @@ const PORT = process.env.PORT;
 connectDB();
 
 app.listen(PORT, () => {
-  console.log(`🚀 ShieldShare server running on port ${PORT}`);
+  console.log(`ShieldShare server running on port ${PORT}`);
 });
