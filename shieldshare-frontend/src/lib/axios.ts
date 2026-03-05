@@ -2,7 +2,7 @@ import axios from "axios"
 import { useAuthStore } from "@/src/store/authStore"
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5005/api",
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },

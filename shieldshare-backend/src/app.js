@@ -6,10 +6,16 @@ const documentRoutes = require("./routes/document.routes");
 
 const app = express();
 
-app.use(cors({
-  origin: "http://localhost:3000",
-  credentials: true
-}));
+const cors = require("cors")
+
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://shieldshare.vercel.app"
+    ]
+  })
+)
 app.use(express.json());
 
 
