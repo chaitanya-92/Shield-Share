@@ -6,13 +6,10 @@ const documentRoutes = require("./routes/document.routes");
 
 const app = express();
 
-const cors = require("cors")
-
 app.use(
   cors({
     origin: [
-      "http://localhost:3000",
-      "https://shieldshare.vercel.app"
+      "https://shield-share.vercel.app"
     ]
   })
 )
